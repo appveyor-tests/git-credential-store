@@ -1,0 +1,9 @@
+init:
+- appveyor version
+- git --version
+
+test_script:
+- ps: $result = (git config --get credential.helper)
+- ps: if($result -ne '') { throw "Credential manager should be unset, but it is currently set to $result."; }
+
+build: off
